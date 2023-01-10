@@ -5,5 +5,5 @@ return [
     'unauthorized_login' => 'Unauthorized login',
     'unauthorized' => 'Unauthorized',
     'logout' => 'Logout',
-    'verified' => 'Email already verified'
+    'verified' => 'Email already verified',
 ];

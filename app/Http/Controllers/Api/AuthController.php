@@ -7,17 +7,20 @@ use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\RegisterRequest;
 use App\Http\Resources\AuthResource;
 use App\Models\User;
+use App\Services\RegisterService;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
-    public function __construct(protected User $user)
+    public function __construct(private User $user, private RegisterService $registerService)
     {
     }
 
     public function register(RegisterRequest $request): Response
     {
         $user = $this->user->create($request->validated());
+
+        $this->registerService->actions($user);
 
         return response([
             'data' => new AuthResource($user),
